@@ -6,11 +6,11 @@ pip3 install flask flask_cors selenium
 # วิธีรัน  
 python3 main.py
 
-#คำสั่ง api
-/run?on=(ขาไฟสัญญาณ)
-#เปิดหน้า app (กรณีที่มันดับ)
+# คำสั่ง api
+/run?on=17 (ขาไฟสัญญาณ)
+# เปิดหน้า app (กรณีที่มันดับ)
 /start
-#ปิด app
+# ปิด app
 /close
 
 # Raspberry Pi pin number
