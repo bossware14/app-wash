@@ -19,3 +19,5 @@ python3 main.py
 (22)
 (27)
 <img src="https://miro.medium.com/v2/resize:fit:828/format:webp/0*m8yp9LASmibk4IVu.png">
+
+<img src="https://miro.medium.com/v2/resize:fit:828/format:webp/0*j5wvpTn4VIDd5RsR.png">
