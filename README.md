@@ -1,15 +1,19 @@
 ทดสอบ Python App
+python3
 # ติดตั้ง
 pip3 install flask flask_cors selenium
+
 # วิธีรัน  
 python3 main.py
 
+#คำสั่ง api
+/run?on=(ขาไฟสัญญาณ)
+#เปิดหน้า app (กรณีที่มันดับ)
+/start
+#ปิด app
+/close
 
-
-# InPut OutPut
-รูปภาพประกอบ
-
-ขาไฟสัญญาณ
+# Raspberry Pi pin number
 (17)
 (18)
 (22)
