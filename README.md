@@ -1,10 +1,16 @@
 # Download And install
 git clone https://github.com/bossware14/app-wash.git
+
 cd app-wash
+
 python3 -m venv env
+
 pip install flask
-pip flask_cors
-pip selenium
+
+pip install flask_cors
+
+pip install selenium
+
 flask run --host=0.0.0.0 --port=3000
 
 
