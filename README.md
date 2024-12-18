@@ -20,8 +20,11 @@ flask run --host=0.0.0.0 --port=3000
 git clone https://github.com/bossware14/app-wash.git
 
 cd app-wash
+
 python3 -m venv env
+
 pip install flask flask_cors selenium
+
 flask run --host=0.0.0.0 --port=3000
 
 # กรณีติด Error: externally-managed-environment
