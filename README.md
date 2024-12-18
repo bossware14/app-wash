@@ -1,9 +1,12 @@
 ทดสอบ Python App
 python3
 # ติดตั้ง
-pip3 install flask flask_cors selenium
+python3 -m venv env
+pip install flask flask_cors selenium
 
 # วิธีรัน  
+flask run --host=0.0.0.0 --port=3000
+ 
 python3 app.py
 
 # คำสั่ง api
@@ -18,6 +21,8 @@ python3 app.py
 (18)
 (22)
 (27)
+(24)
+(25)
 <img src="https://miro.medium.com/v2/resize:fit:828/format:webp/0*m8yp9LASmibk4IVu.png">
 
 <img src="https://miro.medium.com/v2/resize:fit:828/format:webp/0*j5wvpTn4VIDd5RsR.png">
