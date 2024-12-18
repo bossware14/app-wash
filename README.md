@@ -1,3 +1,6 @@
+# update
+pip install public-ip
+
 # ติดตั้งครั้งแรก
 sudo apt update
 
