@@ -1,25 +1,20 @@
-# Download And install
+# ติดตั้งครั้งแรก
+sudo apt update
+sudo apt upgrade -y
+sudo apt install python3 python3-flask
 git clone https://github.com/bossware14/app-wash.git
-
 cd app-wash
-
+pip install flask flask_cors selenium
 python3 -m venv env
-
-pip install flask
-
-pip install flask_cors
-
-pip install selenium
-
 flask run --host=0.0.0.0 --port=3000
 
 
-
-ทดสอบ Python App
-python3
-# ติดตั้ง
+# เคยลง Flask Download And install
+git clone https://github.com/bossware14/app-wash.git
+cd app-wash
 python3 -m venv env
-pip install flask flask_cors selenium
+flask run --host=0.0.0.0 --port=3000
+
 
 # วิธีรัน  
 flask run --host=0.0.0.0 --port=3000
