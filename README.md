@@ -14,15 +14,12 @@ curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
 
 ngrok config add-authtoken 2q6m1Gd0w8fEuibiwyToH0JEyfx_2ft99jvARhHn2u8Q2EPe1
 
+#install
 git clone https://github.com/bossware14/app-wash.git
-
 cd app-wash
-
-pip install flask flask_cors selenium
-
+pip install flask flask_cors selenium gpiod
 python3 -m venv env
-
-flask run --host=0.0.0.0 --port=3000
+python3 app.py
 
 
 # Update และโหลดใหม่
