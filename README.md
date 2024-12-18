@@ -4,7 +4,7 @@ python3
 pip3 install flask flask_cors selenium
 
 # วิธีรัน  
-python3 main.py
+python3 app.py
 
 # คำสั่ง api
 /run?on=17 (ขาไฟสัญญาณ)
