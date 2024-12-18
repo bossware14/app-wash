@@ -93,7 +93,7 @@ window.location.href = "https:" + window.location.href.substring(window.location
                         <div style="padding:5px;">
                             <div style="text-align:center;margin-bottom:5px;">
                                 สถาณะ :
-                                <b id="STATUS">ONLINE</b>
+                                <b class="rounded ps-2 pe-2 text-white" id="STATUS">ONLINE</b>
                             </div>
                             <div class="d-flex">
                                 <div>
@@ -104,10 +104,10 @@ window.location.href = "https:" + window.location.href.substring(window.location
                                 </div>
                             </div>
                             <div class="progress mt-2 mb-3" style="height:20px;">
-                                <div class="progress-bar bg-primary" id="persen" style="width:75%;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="0">
+                                <div class="progress-bar bg-primary" id="persen" style="width:0%;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="0">
 
                                 </div>
-                                <div class="h4 text-white w-100 text-center" style="position: absolute;">
+                                <div class="d-none text-white w-100 text-center" style="position: absolute;">
                                     อีก 10 นาที
                                 </div>
                             </div>
@@ -570,6 +570,14 @@ function AppStart(number){
         if(str.status == 'error'){
             return notify('error')
         }
+        var time = 10;
+        var data = '{"id":"wash","status":"เริ่มซัก","timeout":"'+time+'"}';
+            $.ajax('/api' , {
+                data: data ,
+                contentType: 'application/json',
+                type: 'POST',
+                success: function(str) {
+             }})
         $('#STATUS_LED').val('เริ่มการทำงาน');
     });
 }
@@ -579,9 +587,46 @@ function AppStop(){
         if(str.status == 'error'){
             return notify('error')
         }
+        var time = 0;
+        var data = '{"id":"wash","status":"หยุดการทำงาน","timeout":"'+time+'"}';
+            $.ajax('/api' , {
+                data: data ,
+                contentType: 'application/json',
+                type: 'POST',
+                success: function(str) {
+             }})
+
         $('#STATUS_LED').val('สิ้นสุดการทำงาน');
     });
 }
+
+function getStatus() {
+            $.getJSON('/api', function(str) {
+
+                if(str.status == 'หยุดการทำงาน'){
+                    $('#STATUS').removeClass('bg-green');
+                    $('#STATUS').addClass('bg-red');
+                }else{
+                    $('#STATUS').removeClass('bg-red');
+                    $('#STATUS').addClass('bg-green');
+                }
+
+                $('#STATUS').html(str.status);
+                $('#status_server').html(str.msg);
+                $('#name').html(str.name);
+                $('#timeout').html(str.timeout);
+                $('#RUNTIME').html(str.runtime);
+                $('#TIMESERVER').html(str.time);
+                $('#RUNNING').html(str.msg);
+                $('#persen').attr('style','width:'+str.persen+'%');
+                AppId = str.id;
+            })
+        }
+        getStatus();
+
+
+setInterval(getStatus, 1000);
+
     </script>
 
 </body>
