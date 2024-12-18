@@ -194,6 +194,9 @@ def on_run():
     msg['msg'] = "เปิดทั้งหมด"
     return jsonify(msg),200
 
+@app.route('/v',methods=['GET'])
+def Ngo():
+  os.system("ngrok http http://localhost:3000")
 
 StartServer()
 # ทำงาน
