@@ -35,7 +35,7 @@ def SETLED(number):
   led_line = chip.get_line(LED_PIN)
   led_line.request(consumer="LED", type=gpiod.LINE_REQ_DIR_OUT)
   led_line.set_value(1) #เปิด
-  time.sleep(0.1)
+  time.sleep(1)
   led_line.set_value(0) #ปิด
   led_line.release()
   chip.close()
