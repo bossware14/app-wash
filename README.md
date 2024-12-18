@@ -5,6 +5,15 @@ sudo apt upgrade -y
 
 sudo apt install python3 python3-flask
 
+curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
+	| sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null \
+	&& echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
+	| sudo tee /etc/apt/sources.list.d/ngrok.list \
+	&& sudo apt update \
+	&& sudo apt install ngrok
+
+ngrok config add-authtoken 2q6m1Gd0w8fEuibiwyToH0JEyfx_2ft99jvARhHn2u8Q2EPe1
+
 git clone https://github.com/bossware14/app-wash.git
 
 cd app-wash
