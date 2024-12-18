@@ -288,7 +288,7 @@ def WEB_API():
               data['data']['TIMSEC'] = TOSEC
               data['data']['msg'] = "กำลังทำงาน"
     
-    return jsonify(data['data']),200
+            return jsonify(data['data']),200
  
 
 @app.route('/backend',methods=['GET','POST'])
