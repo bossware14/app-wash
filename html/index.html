@@ -115,6 +115,7 @@ window.location.href = "https:" + window.location.href.substring(window.location
                                 <source src="https://washclub.honey.co.th/images/vdo1.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
+<img src="https://app-wash.all123th.com/logo.gif">
                         </div>
                     </ons-col>
                     <ons-col>
@@ -142,26 +143,28 @@ window.location.href = "https:" + window.location.href.substring(window.location
                             <div class="col-6">
                                 <input onclick="AppRun(22);" type="radio" class="btn-check" name="modewash" id="modewash4" autocomplete="off">
                                 <label class="btn btn-outline-primary w-100 mb-2" for="modewash4">ซักถนอม</label>
-
                             </div>
                         </div>
                         <div style="padding:5px">
                             <label style="font-weight:400;margin-bottom:5px;">อุณหภูมิ น้ำ</label>
                             <br>
                             <div class="btn-group w-100" role="group" aria-label="Basic radio toggle button group">
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                                <input onclick="AppRun(23);" type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
                                 <label class="btn btn-outline-primary" for="btnradio1">ปกติ</label>
 
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                                <input onclick="AppRun(23);" type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
                                 <label class="btn btn-outline-primary" for="btnradio2">น้ำอุ่น</label>
 
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                                <input onclick="AppRun(23);" type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
                                 <label class="btn btn-outline-primary" for="btnradio3">น้ำเย็น</label>
                             </div>
-                        </div>
-
+<div class="btn-group w-100" role="group">
+                                 <button onclick="AppStop()" style="font-size:20px" class="w-50 mt-3 btn btn-outline-danger">สิ้นสุด</button>
+                               <button onclick="AppStart(24)" style="font-size:20px" class="w-100 mt-3 btn btn-outline-success">เริ่มการทำงาน</button>
+</div>
+</div>
                     </ons-col>
-                </ons-row>
+
             </ons-card>
 
         </ons-page>
@@ -556,9 +559,28 @@ function AppRun(number){
         if(str.status == 'error'){
             return notify('error')
         }else{
-            notify(str.status)
+          //  notify(str.status)
         }
         $('#STATUS_LED').val(str.status);
+    });
+}
+
+
+function AppStart(number){
+    $.getJSON('/delay?id='+number,function(str){
+        if(str.status == 'error'){
+            return notify('error')
+        }
+        $('#STATUS_LED').val('เริ่มการทำงาน');
+    });
+}
+
+function AppStop(){
+    $.getJSON('/off',function(str){
+        if(str.status == 'error'){
+            return notify('error')
+        }
+        $('#STATUS_LED').val('สิ้นสุดการทำงาน');
     });
 }
     </script>
