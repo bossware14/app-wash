@@ -25,6 +25,15 @@ python3 -m venv env
 
 flask run --host=0.0.0.0 --port=3000
 
+# กรณีติด Error: externally-managed-environment
+python3 -m venv ~/py_envs
+
+source ~/py_envs/bin/activate
+
+python3 -m pip install xyz
+
+pip install xyz --break-system-packages
+
 
 # วิธีรัน  
 flask run --host=0.0.0.0 --port=3000
