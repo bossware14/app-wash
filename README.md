@@ -16,6 +16,15 @@ python3 -m venv env
 flask run --host=0.0.0.0 --port=3000
 
 
+# Update และโหลดใหม่
+rm -f -r app-wash
+
+git clone https://github.com/bossware14/app-wash.git
+
+cd app-wash
+
+python3 app.py
+
 # เคยลง Flask Download And install
 git clone https://github.com/bossware14/app-wash.git
 
