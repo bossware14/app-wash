@@ -22,7 +22,7 @@ DEBUG_MODE = True  # โหมด ทดลอง  True|False
 
 
 def StartServer():
-    subprocess.Popen(['chromium-browser','--allow-file-access-from-files', '--kiosk', 'http://localhost:3000']) 
+    subprocess.Popen(['chromium-browser','--start-fullscreen','--allow-file-access-from-files', '--kiosk', 'http://localhost:3000']) 
     return True
 
 
