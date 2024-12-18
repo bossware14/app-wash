@@ -106,10 +106,10 @@ CORS(app)
 json_data = {}
 
 ID_COMPUTER = subprocess.check_output('hostnamectl').decode().split()[8]
-IP_COMPUTER = requests.get('https://checkip.amazonaws.com').text.strip()
+#IP_COMPUTER = requests.get('https://checkip.amazonaws.com').text.strip()
 
 json_data['id'] = ID_COMPUTER
-json_data['ip'] = IP_COMPUTER
+#json_data['ip'] = IP_COMPUTER
 json_data['date'] = datetime.now(tz=tz).strftime('%Y-%m-%d %H:%M:%S')
 json_data['status'] = 'ONLINE'
 
@@ -138,7 +138,7 @@ def KULLSS():
     os.system("pkill chromium")
     msg = {}
     msg['msg'] = 'CLOSE' 
-    ExitApp()
+    #ExitApp()
     return jsonify(msg),200
 
 #เปิดหน้าใหม่
