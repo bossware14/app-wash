@@ -93,7 +93,7 @@ window.location.href = "https:" + window.location.href.substring(window.location
                         <div style="padding:5px;">
                             <div style="text-align:center;margin-bottom:5px;">
                                 สถาณะ :
-                                <b class="rounded ps-2 pe-2 text-white" id="STATUS">ONLINE</b>
+                                <b class="rounded ps-2 pe-2 text-dark" id="STATUS">ONLINE</b>
                             </div>
                             <div class="d-flex">
                                 <div>
@@ -125,42 +125,41 @@ window.location.href = "https:" + window.location.href.substring(window.location
                         </div>
                         <div class="mt-2 row" style="padding:5px;">
                             <div class="col-6">
-                                <input onclick="AppRun(18);" type="radio" class="btn-check" name="modewash" id="modewash1" autocomplete="off">
+                                <input onclick="AppRun(18);$('#modewash').val('modewash1');" type="radio" class="btn-check modewash" name="modewash" id="modewash1">
                                 <label class="btn btn-outline-primary w-100 mb-2" for="modewash1">ซักปกติ</label>
                             </div>
-
                             <div class="col-6">
-                                <input onclick="AppRun(17);" type="radio" class="btn-check" name="modewash" id="modewash2" autocomplete="off">
+                                <input onclick="AppRun(17);$('#modewash').val('modewash2');" type="radio" class="btn-check modewash" name="modewash" id="modewash2">
                                 <label class="btn btn-outline-primary w-100 mb-2" for="modewash2">ซักด่วน</label>
 
                             </div>
                             <div class="col-6">
-                                <input onclick="AppRun(27);" type="radio" class="btn-check" name="modewash" id="modewash3" autocomplete="off">
+                                <input onclick="AppRun(27);$('#modewash').val('modewash3');" type="radio" class="btn-check modewash" name="modewash" id="modewash3">
                                 <label class="btn btn-outline-primary w-100 mb-2" for="modewash3">ผ้าหุ่ม</label>
                             </div>
-
                             <div class="col-6">
-                                <input onclick="AppRun(22);" type="radio" class="btn-check" name="modewash" id="modewash4" autocomplete="off">
+                                <input onclick="AppRun(22);$('#modewash').val('modewash4');" type="radio" class="btn-check modewash" name="modewash" id="modewash4">
                                 <label class="btn btn-outline-primary w-100 mb-2" for="modewash4">ซักถนอม</label>
                             </div>
+                            <input id="modewash" type="hidden" value="">
                         </div>
                         <div style="padding:5px">
                             <label style="font-weight:400;margin-bottom:5px;">อุณหภูมิ น้ำ</label>
                             <br>
                             <div class="btn-group w-100" role="group" aria-label="Basic radio toggle button group">
-                                <input onclick="AppRun(23);" type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="btnradio1">ปกติ</label>
-
-                                <input onclick="AppRun(23);" type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio2">น้ำอุ่น</label>
-
-                                <input onclick="AppRun(23);" type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio3">น้ำเย็น</label>
+                                <input type="radio" class="btn-check temperature"  onclick="$('#temperature').val('temperature1');" name="temperature" id="temperature1">
+                                <label class="btn btn-outline-primary" for="temperature1">ปกติ</label>
+                                <input type="radio" class="btn-check temperature" onclick="$('#temperature').val('temperature2');" name="temperature" id="temperature2">
+                                <label class="btn btn-outline-primary" for="temperature2">น้ำอุ่น</label>
+                                <input type="radio" class="btn-check temperature" onclick="$('#temperature').val('temperature3');" name="temperature" id="temperature3">
+                                <label class="btn btn-outline-primary" for="temperature3">น้ำเย็น</label>
+                                <input id="temperature" type="hidden" value="">
                             </div>
-<div class="btn-group w-100" role="group">
-                                 <button onclick="AppStop()" style="font-size:20px" class="w-50 mt-3 btn btn-outline-danger">สิ้นสุด</button>
-                               <button onclick="AppStart(24)" style="font-size:20px" class="w-100 mt-3 btn btn-outline-success">เริ่มการทำงาน</button>
-</div>
+
+                            <div class="btn-group w-100" role="group">
+                                    <button onclick="AppStop();$('#AppStop').attr('disabled',true);$('#AppStart').drop('disabled',false);$('.modewash').drop('disabled',false);$('.temperature').drop('disabled',false);"  id="AppStop" style="font-size:20px" class="w-100 mt-3 btn btn-outline-danger">สิ้นสุด</button>
+                                    <button onclick="AppStart();$('#AppStart').attr('disabled',true);$('#AppStop').drop('disabled',false);$('.modewash').attr('disabled',true);$('.temperature').attr('disabled',true);"  id="AppStart" style="font-size:20px" class="w-100 mt-3 btn btn-outline-success">เริ่มการทำงาน</button>
+                            </div>
 </div>
                     </ons-col>
 
@@ -563,15 +562,70 @@ function AppRun(number){
         $('#STATUS_LED').val(str.status);
     });
 }
+var MODED = [];
+var MODED_PRICE = [];
+
+async function getStatus() {
+            await $.getJSON('/api', function(str) {
+                if(str.status == 'error'){
+                    $('#STATUS').removeClass('bg-green');
+                    $('#STATUS').addClass('bg-red');
+                }else{
+                    $('#STATUS').removeClass('bg-red');
+                    $('#STATUS').addClass('bg-green');
+                }
+                MODED = str.mode;
+                MODED_PRICE = str.price;
+                $('#STATUS').html(str.msg);
+                $('#wash_status').html(str.data.msg);
+                $('#name').html(str.data.name);
+                $('#timeout').html(str.data.timeout);
+                $('#monitor').val(str.data.monitor);
+                
+                $('#modewash').val(str.data.modewash);
+                $('#temperature').val(str.data.temperature);
+
+                $('#'+str.data.modewash).attr('checked',true);
+                $('#'+str.data.temperature).attr('checked',true);
+                
+                $('#STATUS_LED').val(str.data.msg);
+                $('#RUNTIME').html(str.data.runtime);
+                $('#TIMESERVER').html(str.data.time);
+                $('#persen').attr('style','width:'+str.data.persen+'%');
+                if(str.data.start == 0){
+                    $.getJSON('/off');
+                    $('.modewash').attr('disabled',false);
+                    $('.temperature').attr('disabled',false);
+                    $('#AppStop').attr('disabled',true);
+                    $('#AppStart').attr('disabled',false);
+                    $('#AppStart').show();
+                    $('#AppStop').hide();
+                    clearInterval(RUNTIME);
+                }else{
+                    $('.modewash').attr('disabled',true);
+                    $('.temperature').attr('disabled',true);
+                    $('#AppStop').attr('disabled',false);
+                    $('#AppStart').attr('disabled',true);
+                    $('#AppStart').hide();
+                    $('#AppStop').show();
+                }
+                
+            console.log(MODED)
+            })
+    }
 
 
-function AppStart(number){
-    $.getJSON('/delay?id='+number,function(str){
+
+async function AppStart(){
+    STOP = 0;
+   await  $.getJSON('/delay?id=24',function(str){
         if(str.status == 'error'){
             return notify('error')
         }
-        var time = 10;
-        var data = '{"id":"wash","status":"เริ่มซัก","timeout":"'+time+'"}';
+        time = MODED[$('#modewash').val()];
+        console.log(time)
+        //var time = 10;
+        var data = '{"id":"wash","status":"START","action":"1","start":1,"msg":"เริ่มการทำงาน","modewash":"'+$('#modewash').val()+'","temperature":"'+$('#temperature').val()+'","timeout":"'+time+'","monitor":"เริ่มต้นซักผ้า"}';
             $.ajax('/api' , {
                 data: data ,
                 contentType: 'application/json',
@@ -580,55 +634,34 @@ function AppStart(number){
              }})
         $('#STATUS_LED').val('เริ่มการทำงาน');
     });
+    RUNTIME = setInterval( function(){getStatus()}, 1000);
 }
 
-function AppStop(){
-    $.getJSON('/off',function(str){
+async function AppStop(){
+    STOP = 1;
+   clearInterval(RUNTIME)
+   await $.getJSON('/off',function(str){
         if(str.status == 'error'){
             return notify('error')
         }
         var time = 0;
-        var data = '{"id":"wash","status":"หยุดการทำงาน","timeout":"'+time+'"}';
+        var data = '{"id":"wash","status":"STOP","action":"0","start":0,"msg":"สิ้นสุดการทำงาน","modewash":"modewash1","temperature":"temperature1","timeout":"'+time+'","monitor":"สิ้นสุดการทำงาน"}';
             $.ajax('/api' , {
                 data: data ,
                 contentType: 'application/json',
                 type: 'POST',
                 success: function(str) {
              }})
-
         $('#STATUS_LED').val('สิ้นสุดการทำงาน');
+        getStatus();
     });
 }
 
-function getStatus() {
-            $.getJSON('/api', function(str) {
 
-                if(str.status == 'หยุดการทำงาน'){
-                    $('#STATUS').removeClass('bg-green');
-                    $('#STATUS').addClass('bg-red');
-                }else{
-                    $('#STATUS').removeClass('bg-red');
-                    $('#STATUS').addClass('bg-green');
-                }
+RUNTIME = setInterval(function(){getStatus(); }, 1000);
+var STOP = 0;
 
-                $('#STATUS').html(str.status);
-                $('#status_server').html(str.msg);
-                $('#name').html(str.name);
-                $('#timeout').html(str.timeout);
-                $('#RUNTIME').html(str.runtime);
-                $('#TIMESERVER').html(str.time);
-                $('#RUNNING').html(str.msg);
-                $('#persen').attr('style','width:'+str.persen+'%');
-                AppId = str.id;
-            })
-        }
-        getStatus();
-
-
-setInterval(getStatus, 1000);
-
-    </script>
+</script>
 
 </body>
-
 </html>
