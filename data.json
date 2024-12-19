@@ -1,1 +1,37 @@
-{"id": "a2d08c2d74594940ae6e6d39e96451bb", "date": "2024-12-18 23:15:07", "status": "ONLINE", "data": {"id": "wash", "status": "\u0e2b\u0e22\u0e38\u0e14\u0e01\u0e32\u0e23\u0e17\u0e33\u0e07\u0e32\u0e19", "timeout": "23:21:03", "update": "2024-12-18 23:21:03", "time": "23:21:03", "action": 0, "sec": 0, "runtime": "00:00:00", "persen": "0"}, "port": 3000}
+{
+  "data": {
+    "action": 0,
+    "id": "wash",
+    "modewash": "modewash1",
+    "monitor": "สิ้นสุดการทำงาน",
+    "msg": "สิ้นสุดการทำงาน",
+    "persen": "0",
+    "runtime": "00:00:00",
+    "sec": 0,
+    "start": 0,
+    "status": "STOP",
+    "temperature": "temperature1",
+    "time": "18:35:20",
+    "timeout": "18:35:20",
+    "update": "2024-12-19 18:35:20"
+  },
+  "date": "2024-12-19 18:59:12",
+  "id": "a2d08c2d74594940ae6e6d39e96451bb",
+  "mode": {
+    "modewash1": 15,
+    "modewash2": 10,
+    "modewash3": 30,
+    "modewash4": 25
+  },
+  "msg": "พร้อมใช้งาน",
+  "price": {
+    "modewash1": 30,
+    "modewash2": 30,
+    "modewash3": 50,
+    "modewash4": 40,
+    "temperature1": 0,
+    "temperature2": 30,
+    "temperature3": 0
+  },
+  "status": "ONLINE"
+}
