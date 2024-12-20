@@ -29,6 +29,10 @@ def StartApp():
 #เปิดและปิด 0.1 วิ
 def SETLED(number):
  try:
+  os.system('gpioset gpiochip4 `${int(number)}`=1')
+  time.sleep(.1)
+  os.system('gpioset gpiochip4 `${int(number)}`=0')
+  return f"success"
   LED_PIN = number
   chip = gpiod.Chip('gpiochip4')
   led_line = chip.get_line(LED_PIN)
@@ -45,6 +49,10 @@ def SETLED(number):
 #เปิด-ปิด
 def LEDDELAY(number):
  try:
+  os.system('gpioset gpiochip4 `${int(number)}`=1')
+  time.sleep(1)
+  os.system('gpioset gpiochip4 `${int(number)}`=0')
+  return f"success"
   LED_PIN = number#17 ขาจ่ายไฟ
   chip = gpiod.Chip('gpiochip4')
   led_line = chip.get_line(LED_PIN)
@@ -56,13 +64,17 @@ def LEDDELAY(number):
   chip.close()
   return f"success"
  except:
-  led_line.release()
-  chip.close()
+  #led_line.release()
+  #chip.close()
   return f"error"
 
 #ปิด
 def LEDSTOP(number):
  try:
+  #os.system('gpioset gpiochip4 `${int(number)}`=1')
+  #time.sleep(.1)
+  os.system('gpioset gpiochip4 `${int(number)}`=0')
+  return f"success"
   LED_PIN = number
   chip = gpiod.Chip('gpiochip4')
   led_line = chip.get_line(LED_PIN)
@@ -77,6 +89,10 @@ def LEDSTOP(number):
 #เปิดค้าง
 def LEDSTART(number):
  try:
+  os.system('gpioset gpiochip4 `${int(number)}`=1')
+  #time.sleep(.1)
+  #os.system('gpioset gpiochip4 `${int(number)}`=0')
+  return f"success"
   LED_PIN = number
   chip = gpiod.Chip('gpiochip4')
   led_line = chip.get_line(LED_PIN)
@@ -86,8 +102,8 @@ def LEDSTART(number):
   chip.close()
   return f"success"
  except:
-  led_line.release()
-  chip.close()
+  #led_line.release()
+  #chip.close()
   return f"error"
 
 
